@@ -343,6 +343,11 @@ class SelectWrapper extends Wrapper
 
 
 dom = (node) ->
+  try
+    node.tagName
+  catch error
+    return { node, isAncestor: -> false }
+
   if node?.tagName == 'SELECT'
     return new SelectWrapper(node)
   else
